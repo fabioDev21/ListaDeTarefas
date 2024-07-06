@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+    --prime-color: #183642;
+    --second-color: #EAEAEA;
+}
+html{
+    scroll-behavior: smooth;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+    font-style: normal;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(to left, var(--prime-color) 0%, var(--second-color) 100%);
+    width: 50%;
+    padding: 2em;
+    gap: 1em;
+    margin: auto;
+    font-size: 1.3em;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    padding: 1em;
+    margin: auto;
+    border-radius: 15px;
+    height: 30vh;
+    color: var(--second-color);
+    background-color: var(--prime-color);
+
+    label{
+        display: block;
+        font-size: 22px;
+        font-weight: 600;
+        padding: .2em;
+
+        input, select{
+            font-size: 16px;
+        }
+    }
+    input[type="submit"]{
+        padding: .5em;
+    }
+}
+#classificacao{
+    display: flex;
+    flex: 1;
+    gap: 1em;
+}
+
+#afazeres{
+    display: flex;
+    flex-direction: column;
+    gap: .2em;
+    flex: 1;
+    padding: .2em;
+    margin: auto;
+    border: 2px solid var(--second-color);
+    cursor: pointer;
+    
+    .afazer{
+        padding: .2em;
+        font-size: 22px;
+        font-weight: 600;
+        background-color: var(--prime-color);
+        color: var(--second-color);
+        transition: .35s;
+
+
+        &:hover{
+
+            filter: brightness(1.2);
+        }
+    }
+
+    .concluida{
+        padding: .2em;
+        font-size: 22px;
+        font-weight: 600;
+        color: #000;
+        background-color:  #9ced70;
+        text-decoration: line-through;
+    }
+}
