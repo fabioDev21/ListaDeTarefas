@@ -8,6 +8,6 @@ Tasks:
 
 - Limpar span quando for repetido [ x ]
 - Adicionar tarefas categorizadas [ x ]
-- Salvar tarefa no locationStorage [  ]
+- Salvar tarefa no localStorage [ x ]
 - CRUD complete das tarefas [  ]
 

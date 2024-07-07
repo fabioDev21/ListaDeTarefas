@@ -1,5 +1,8 @@
-const tarefas = []
-localStorage.setItem("tarefas", JSON.stringify(tarefas))
+const tarefas = localStorage.length >= 1 ? JSON.parse(localStorage.getItem("tarefas")) : []
+
+tarefas.forEach(el => {
+    mostraTarefas(el)
+});
 
 const subForm = document.querySelector("#subForm")
 subForm.addEventListener("click", (e) => {
@@ -7,9 +10,10 @@ subForm.addEventListener("click", (e) => {
     coletaTarefas()
 })
 
+
 function coletaTarefas(){
     let tarefaAfazer = document.querySelector("#tarefaAfazer").value
-
+    
     if(tarefaAfazer == " " || tarefaAfazer == ""){
         tarefaAfazer = "Nova tarefa"
     }
@@ -21,10 +25,10 @@ function coletaTarefas(){
         categoriaDaTarefa,
         idTarefa
     }
-
+    
     tarefas.push(novaTarefa)
-    localStorage.setItem("tarefas", JSON.stringify(tarefas))
     mostraTarefas(novaTarefa)
+    localStorage.setItem("tarefas", JSON.stringify(tarefas))
 
 }
 
@@ -46,6 +50,5 @@ function concluiTarefa(idTarefa){
     const leitorTarefa = document.querySelector(newIdTarefa)
     leitorTarefa.addEventListener("click", (e) => {
         leitorTarefa.classList.add("concluida")
-
     })   
 }
