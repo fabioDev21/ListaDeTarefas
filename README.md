@@ -6,5 +6,8 @@ Uma lista de tarefas bem simples feita com JS
 
 Tasks:
 
-- Limpar span quando for repetido
-- Adicionar tarefas categorizadas
+- Limpar span quando for repetido [ x ]
+- Adicionar tarefas categorizadas [ x ]
+- Salvar tarefa no locationStorage [  ]
+- CRUD complete das tarefas [  ]
+

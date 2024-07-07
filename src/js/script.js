@@ -8,7 +8,11 @@ subForm.addEventListener("click", (e) => {
 })
 
 function coletaTarefas(){
-    const tarefaAfazer = document.querySelector("#tarefaAfazer").value
+    let tarefaAfazer = document.querySelector("#tarefaAfazer").value
+
+    if(tarefaAfazer == " " || tarefaAfazer == ""){
+        tarefaAfazer = "Nova tarefa"
+    }
     const categoriaDaTarefa = document.querySelector("#categoriaDaTarefa").value
     const idTarefa = "abc" + (Math.floor(Math.random() * 20))
     
@@ -20,38 +24,28 @@ function coletaTarefas(){
 
     tarefas.push(novaTarefa)
     localStorage.setItem("tarefas", JSON.stringify(tarefas))
-    mostraTarefas()
+    mostraTarefas(novaTarefa)
+
 }
 
-function mostraTarefas(){
-    const totalTarefas = JSON.parse(localStorage.getItem("tarefas"))
+function mostraTarefas({tarefaAfazer, categoriaDaTarefa, idTarefa}){
 
-    totalTarefas.forEach(tarefa => {
+    const ul = document.querySelector("#afazeres")
+    const itemTarefa = document.createElement("li")
+    itemTarefa.setAttribute("id", idTarefa)
+    itemTarefa.setAttribute("class", categoriaDaTarefa)
+    itemTarefa.innerHTML = `${tarefaAfazer}`
+    ul.append(itemTarefa)
 
-        const span = document.createElement("span")
-        span.id = tarefa.idTarefa
-        span.setAttribute("class", "afazer")
-        span.innerHTML = `<p>${tarefa.tarefaAfazer}</p>`
-
-        let idTarefa = "#" + (span.id).toString()
-
-        const validaTarefa = Array.from(document.querySelectorAll(".afazer"))
-
-        validaTarefa.forEach(existente => {
-            if(tarefa.idTarefa === existente.id){ span.style.display = "none"}
-        })
-        
-        
-        document.querySelector("#afazeres").append(span)
-        concluirTarefa(span,idTarefa)
-    });
+    concluiTarefa(idTarefa)
 }
 
-function concluirTarefa(span, idTarefa){
-    if(span.getAttribute("class") == "afazer"){
-        document.querySelector(idTarefa).addEventListener("click", () => {
-            span.setAttribute("class", "concluida")
+function concluiTarefa(idTarefa){
+    const newIdTarefa = "#" + idTarefa
 
-        })
-    }
+    const leitorTarefa = document.querySelector(newIdTarefa)
+    leitorTarefa.addEventListener("click", (e) => {
+        leitorTarefa.classList.add("concluida")
+
+    })   
 }

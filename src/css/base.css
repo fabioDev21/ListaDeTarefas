@@ -4,10 +4,6 @@
     --prime-color: #183642;
     --second-color: #EAEAEA;
 }
-html{
-    scroll-behavior: smooth;
-}
-
 *{
     margin: 0;
     padding: 0;
@@ -67,20 +63,36 @@ form{
     border: 2px solid var(--second-color);
     cursor: pointer;
     
-    .afazer{
+    .muitoImportante, .tantoFaz, .algumMomento{
         padding: .2em;
+        list-style-type: none;
         font-size: 22px;
         font-weight: 600;
-        background-color: var(--prime-color);
-        color: var(--second-color);
         transition: .35s;
 
 
         &:hover{
 
-            filter: brightness(1.2);
+            filter: contrast(1.3);
         }
     }
+    .muitoImportante{
+        background-color: #ce4b4b;
+        color: #ffffff;
+    }
+
+
+    .tantoFaz{
+        background-color: #db9163;
+        color: #000;
+    }
+    
+    .algumMomento{
+        background-color: #72afe3;
+        color: #000;
+    }
+
+
 
     .concluida{
         padding: .2em;
