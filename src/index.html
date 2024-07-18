@@ -1,35 +1,75 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/base.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/base.css" />
     <script src="js/script.js" defer></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <title>Lista de Tarefas</title>
-</head>
-<body>
+  </head>
+  <body>
     <form>
-        <h3>Deposite sua tarefa abaixo</h3>
-        <label for="tarefa">
-            <span>Tarefa: </span>
-            <input type="text" id="tarefaAfazer" required>
-        </label>
-        <label for="categoria">
-            <span>Categoria: </span>
-            <select id="categoriaDaTarefa">
-                <option value="muitoImportante">Agora</option>
-                <option value="tantoFaz">Depois</option>
-                <option value="algumMomento">Mais tarde</option>
-            </select>
-        </label>
-        <input type="submit" value="Criar tarefa" id="subForm">
+      <h3>Liste sua tarefa</h3>
+      <label for="tarefaAfazer">
+        <span>Tarefa: </span>
+        <input type="text" id="tarefaAfazer" required />
+      </label>
+      <label for="descricaoTarefa">
+        <span>Descrição: </span>
+        <textarea id="descricaoTarefa"></textarea>
+      </label>
+      <button id="subForm"><i class="fa-solid fa-plus"></i></button>
     </form>
 
     <div id="classificacao">
-        <ul id="afazeres">
-            <h2>Tarefas: </h2>
-        </ul>
-        <img src="" alt="">
+      <ul id="afazeresTarefas">
+        <h2>Tarefas</h2>
+      </ul>
+
+      <div id="modal hidden">
+        <div class="itensTarefa hidden">
+          <label for="alteraNomeTarefa">
+            <span>Alterar tarefa: </span>
+            <input type="text" value="nome tarefa" id="alteraNomeTarefa" />
+          </label>
+          <label for="alteraDescricaoTarefa">
+            <span>Alterar descrição: </span>
+            <textarea id="alteraDescricaoTarefa"></textarea>
+          </label>
+          <label for="alteraStatusTarefa">
+            <span>Alterar Status: </span>
+            <select id="alteraStatusTarefa">
+              <option value="" selected>-- status --</option>
+              <option value="afazer">À fazer</option>
+              <option value="fazendo">Fazendo</option>
+              <option value="concluida">Concluída</option>
+            </select>
+          </label>
+          <div class="configsTarefa">
+            <button
+              class="btnAlterarTarefa"
+              id="excluirTarefa"
+              title="Excluir tarefa"
+            >
+              <i class="fa-solid fa-trash"></i>
+            </button>
+            <button
+              class="btnAlterarTarefa"
+              id="confirmarAlterarTarefa"
+              title="Confirmar Alterações"
+            >
+              <i class="fa-solid fa-circle-check"></i>
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
-</body>
+  </body>
 </html>
