@@ -146,7 +146,7 @@ button{
     }
 }
 
-#modal{
+.modal{
     position: absolute;
     display: grid;
     place-items: center;
@@ -197,6 +197,9 @@ button{
         align-self: center;
         margin-inline: 5px;
 
+        i{
+            pointer-events: none;
+        }
         &:hover{
             scale: 1.2;
         }
