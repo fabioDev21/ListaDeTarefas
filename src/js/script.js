@@ -13,7 +13,6 @@ subForm.addEventListener("click", (e) => {
 
 function validaTarefas() {
   let tarefaAfazer = document.querySelector("#tarefaAfazer").value;
-
   if (tarefaAfazer.trim() === "") {
     tarefaAfazer = "Nova tarefa";
   }
@@ -44,7 +43,9 @@ function mostraTarefas({ tarefaAfazer, idTarefa }) {
 
 document.addEventListener("click", (e) => {
   const alvoEl = e.target;
+
   if (alvoEl.id === "configsBtn") {
+
     var parenteEl = alvoEl.closest("li");
     document.querySelectorAll(".modal")[0].classList.remove("hidden");
     document.querySelectorAll(".itensTarefa")[0].classList.remove("hidden");
@@ -55,14 +56,38 @@ document.addEventListener("click", (e) => {
 function editTarefa(parenteEl) {
   // Define nomes e descrição da tarefa oriundos do objeto da lista
   const inputNomeTarefa = document.querySelector("#alteraNomeTarefa");
-  const inputDescTarefa = document.querySelector("#alteraDescricaoTarefa");
   inputNomeTarefa.value = parenteEl.textContent;
-  inputDescTarefa.value = parenteEl.textContent;
 
-  // definir inputs e descrição p/ alterar [x]
-  // aguardar o click da exclusão ou confirmação [x]
-  // tirar a classe hidden e incluí-la nas tarefas [x]
-  // pegar o texto [x]
+  const selectStatusTarefa = document.querySelector("#alteraStatusTarefa")
+  console.log(selectStatusTarefa)
+
+  selectStatusTarefa.addEventListener("change", (e) => {
+    if(selectStatusTarefa.value === "afazer"){
+      if(parenteEl.classList.contains("desenvolvendoTarefa")){
+        parenteEl.classList.remove("desenvolvendoTarefa")
+      }
+
+      if(parenteEl.classList.contains("concluida")){
+        parenteEl.classList.remove("concluida")
+      }
+
+      parenteEl.classList.add("tarefaAfazer")
+    }
+    
+    if(selectStatusTarefa.value === "fazendo"){
+      if(parenteEl.classList.contains("concluida")){
+        parenteEl.classList.remove("concluida")
+      }
+      parenteEl.classList.add("desenvolvendoTarefa")
+    }
+
+    if(selectStatusTarefa.value === "concluida"){
+      if(parenteEl.classList.contains("desenvolvendoTarefa")){
+        parenteEl.classList.remove("desenvolvendoTarefa")
+      }
+      parenteEl.classList.add("concluida")
+    }
+  })
 
   document.addEventListener("click", (e) => {
     const alvoEl = e.target;
@@ -83,17 +108,17 @@ function editTarefa(parenteEl) {
       const tarefas = JSON.parse(localStorage.getItem("tarefas"));
       tarefas.find((el) => {
         if (el.idTarefa === parenteEl.id) {
-          el.tarefaAfazer = inputNomeTarefa.value
+          el.tarefaAfazer = inputNomeTarefa.value;
         }
       });
-      localStorage.setItem("tarefas", JSON.stringify(tarefas))
+      localStorage.setItem("tarefas", JSON.stringify(tarefas));
     }
   });
 }
 
 function concluiTarefa(idTarefa) {
   const leitorTarefa = document.getElementById(idTarefa);
-  leitorTarefa.addEventListener("click", (e) => {
+  leitorTarefa.addEventListener("dblclick", (e) => {
     leitorTarefa.classList.toggle("concluida");
   });
 }

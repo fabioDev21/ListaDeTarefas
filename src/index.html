@@ -21,10 +21,6 @@
         <span>Tarefa: </span>
         <input type="text" id="tarefaAfazer" required />
       </label>
-      <label for="descricaoTarefa">
-        <span>Descrição: </span>
-        <textarea id="descricaoTarefa"></textarea>
-      </label>
       <button id="subForm"><i class="fa-solid fa-plus"></i></button>
     </form>
 
@@ -39,16 +35,13 @@
             <span>Alterar tarefa: </span>
             <input type="text" value="nome tarefa" id="alteraNomeTarefa" />
           </label>
-          <label for="alteraDescricaoTarefa">
-            <span>Alterar descrição: </span>
-            <textarea id="alteraDescricaoTarefa"></textarea>
-          </label>
           <label for="alteraStatusTarefa">
             <span>Alterar Status: </span>
             <select id="alteraStatusTarefa">
               <option value="" selected>-- status --</option>
               <option value="afazer">À fazer</option>
               <option value="fazendo">Fazendo</option>
+              <option value="concluida">Concluída</option>
             </select>
           </label>
           <div class="configsTarefa">
