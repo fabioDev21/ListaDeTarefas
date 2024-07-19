@@ -44,30 +44,51 @@ function mostraTarefas({ tarefaAfazer, idTarefa }) {
 
 document.addEventListener("click", (e) => {
   const alvoEl = e.target;
-  console.log(alvoEl.id);
   if (alvoEl.id === "configsBtn") {
     var parenteEl = alvoEl.closest("li");
     document.querySelectorAll(".modal")[0].classList.remove("hidden");
     document.querySelectorAll(".itensTarefa")[0].classList.remove("hidden");
-    editTarefa();
-  }
-  if (alvoEl.id === "excluirTarefa") {
-    excluirTarefa(parenteEl);
-  }
-
-  if (alvoEl.id === "confirmarAlterarTarefa") {
-    document.querySelectorAll(".modal")[0].classList.add("hidden");
-    document.querySelectorAll(".itensTarefa")[0].classList.add("hidden");
+    editTarefa(parenteEl);
   }
 });
 
-function editTarefa() {
-  // definir inputs e descrição p/ alterar
-  // aguardar o click da exclusão ou confirmação []
+function editTarefa(parenteEl) {
+  // Define nomes e descrição da tarefa oriundos do objeto da lista
+  const inputNomeTarefa = document.querySelector("#alteraNomeTarefa");
+  const inputDescTarefa = document.querySelector("#alteraDescricaoTarefa");
+  inputNomeTarefa.value = parenteEl.textContent;
+  inputDescTarefa.value = parenteEl.textContent;
+
+  // definir inputs e descrição p/ alterar [x]
+  // aguardar o click da exclusão ou confirmação [x]
   // tirar a classe hidden e incluí-la nas tarefas [x]
-  // pegar o texto
-  // alterar o objeto vindo do localstorage
-  // confirmar a alteração do objeto no localstorage
+  // pegar o texto [x]
+
+  document.addEventListener("click", (e) => {
+    const alvoEl = e.target;
+
+    if (alvoEl.id === "excluirTarefa") {
+      excluirTarefa(parenteEl);
+      document.querySelectorAll(".modal")[0].classList.add("hidden");
+      document.querySelectorAll(".itensTarefa")[0].classList.add("hidden");
+    }
+
+    if (alvoEl.id === "confirmarAlterarTarefa") {
+      // Necessário adicionar o icon através do innerHTML tbm
+      parenteEl.innerHTML = `${inputNomeTarefa.value} <i class="fa-solid fa-gear" id="configsBtn"></i>`;
+      document.querySelectorAll(".modal")[0].classList.add("hidden");
+      document.querySelectorAll(".itensTarefa")[0].classList.add("hidden");
+
+      // Chamada do array para substituição dos atributos da tarefa
+      const tarefas = JSON.parse(localStorage.getItem("tarefas"));
+      tarefas.find((el) => {
+        if (el.idTarefa === parenteEl.id) {
+          el.tarefaAfazer = inputNomeTarefa.value
+        }
+      });
+      localStorage.setItem("tarefas", JSON.stringify(tarefas))
+    }
+  });
 }
 
 function concluiTarefa(idTarefa) {
