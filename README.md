@@ -9,5 +9,5 @@ Tasks:
 - Limpar span quando for repetido [ x ]
 - Adicionar tarefas categorizadas [ x ]
 - Salvar tarefa no localStorage [ x ]
-- CRUD complete das tarefas [  ]
+- CRUD complete das tarefas [ x ]
 
